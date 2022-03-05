@@ -1,35 +1,30 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, FlatList, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TouchableOpacity, Text, StyleSheet, FlatList, Alert, ProgressBarAndroidBase } from 'react-native';
+import services from '../../services';
 //import GFontes from 'react-native-vector-icons/MaterialIcons';
 //import { useNavigation } from '@react-navigation/native';
 //import IconInput from '../../components/iconInput';
-//import ProdutosListagem from '../../components/ProdutosListagem';
+import ProductsList from '../../components/ProductsList/index';
 //import { getProdutos } from '../../services/produtos';
 
-export default function Produtos() {
-  // const navigation = useNavigation();
-   const [produtos, setProdutos] = useState([]);
+const Produtos = () => {
 
-   const listarProdutos = async (text) => {
-      try {
-         if (text.length >= 3) {
-            const res = await getProdutos(text)
-            setProdutos(res.data.data)
-         }
-         if (text.length < 3) {
-            setProdutos([])
-         }
-      } catch (error) {
-         Alert.alert(String(error))
+
+   const [products, setProducts] = useState({});
+   useEffect(() => {
+      async function get() {
+         const products = await services.produtos.getProductos()
+         setProducts(products)
       }
-   }
+      get()
+   }, []);
 
    return (
       <View style={styles.container}>
          <View style={styles.contentHeader}>
             <TouchableOpacity
                style={styles.buttonBack}
-             //  onPress={() => navigation.goBack()}
+            //  onPress={() => navigation.goBack()}
             >
                {/* <GFontes
                   name="keyboard-return"
@@ -39,24 +34,17 @@ export default function Produtos() {
             </TouchableOpacity>
             <Text style={styles.textHeader}> Produtos </Text>
          </View>
-
-         {/* <IconInput
-            onChangeText={(text) => listarProdutos(text)}
-         /> */}
-
-         {produtos.length <= 0 && (
-            <Text style={styles.initialText}>Comece a digitar para pesquisar</Text>
-         )}
-
-         {/* <FlatList
-            data={produtos}
+         
+         <FlatList
+            data={products}
             renderItem={(item) => (
-               <ProdutosListagem
-                  data={item}
+               <ProductsList
+                  name={item.item.name}
+                  url={item.item.image_link}
                />
             )}
             keyExtractor={(item, index) => String(index)}
-         /> */}
+         />
 
       </View>
    );
@@ -95,3 +83,5 @@ const styles = StyleSheet.create({
       marginTop: 5
    }
 });
+
+export default Produtos;
