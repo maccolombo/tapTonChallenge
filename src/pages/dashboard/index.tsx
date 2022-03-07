@@ -9,6 +9,7 @@ export default function Dashboard() {
 
     const buttons = [
         { name: "inventory", text: "Produtos", busca: 'Produtos' },
+        { name: "cart", text: "Carrinho", busca: 'Cart' },
     ]
 
     return (

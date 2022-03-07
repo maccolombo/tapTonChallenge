@@ -22,7 +22,7 @@ const Produtos = () => {
          <View style={styles.contentHeader}>
             <TouchableOpacity
                style={styles.buttonBack}
-            //  onPress={() => navigation.goBack()}
+            //  onPress={() =>  console.log("carrin",cart)}   
             >
                {/* <GFontes
                   name="keyboard-return"
@@ -37,18 +37,12 @@ const Produtos = () => {
             data={productsList}
             renderItem={({ item, index }) => (
                <ProductsList
-                  index={index}
                   name={item.name}
                   url={item.image_link}
+                  checked={item.checked}
+                  index={index}
                />
             )}
-            // renderItem={(item) => (
-            //    <ProductsList
-            //       id={item.item.id}
-            //       name={item.item.name}
-            //       url={item.item.image_link}
-            //    />
-            // )}
             numColumns={2}
             keyExtractor={(item, index) => String(index)}
          />

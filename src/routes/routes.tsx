@@ -1,12 +1,9 @@
 import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// import Login from '../Pages/Login';
 import Dashboard from '../pages/dashboard';
-// import CriarPedido from '../Pages/CriarPedido';
-// import Clientes from "../Pages/Clientes";
 import Produtos from "../pages/products";
-// import Pedidos from "../Pages/Pedidos"
+import Cart from "../pages/cart";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,13 +26,13 @@ export default function routes() {
                     headerShown: false
                 }}
             />
-            {/* <Stack.Screen
-                    name="Pedidos"
-                    component={Pedidos}
-                    options={{
-                        headerShown: false
-                    }}
-                /> */}
+            <Stack.Screen
+                name="Cart"
+                component={Cart}
+                options={{
+                    headerShown: false
+                }}
+            />
         </Stack.Navigator>
     );
 }
