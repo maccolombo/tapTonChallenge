@@ -1,13 +1,12 @@
 
-import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ProductsListComponentProps } from './productsList.component.props.type';
 
 const ProductsListComponent: FC = (props: ProductsListComponentProps): JSX.Element => {
-    // console.log(props)
+    
     return (
         <View style={styles.container}>
-
             <Text style={styles.desc}> {props.name}</Text>
             <Image
                 style={{
@@ -15,7 +14,7 @@ const ProductsListComponent: FC = (props: ProductsListComponentProps): JSX.Eleme
                     height: 70,
                 }}
                 source={{
-                    uri: props.url
+                    uri: props.url  
                 }}
             />
 
@@ -23,8 +22,9 @@ const ProductsListComponent: FC = (props: ProductsListComponentProps): JSX.Eleme
                 //   onPress={() => handleAddButton()}
                 style={styles.addButton}
             >
-                <Text style={{ color: "#FFF" }}>{props.id % 2 === 0 ? "Remover" : "Add"}</Text>
+                <Text style={{ color: "#FFF" }}>Add</Text>
             </TouchableOpacity>
+
         </View >
     );
 }
