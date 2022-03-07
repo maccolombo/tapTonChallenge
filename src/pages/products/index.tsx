@@ -12,12 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 const Produtos = () => {
    const dispatch = useDispatch();
    const { productsList } = useSelector((state: State) => state.products);
+
    useEffect(() => {
-      async function get() {
-         const products = await services.produtos.getProductos()
-         dispatch(productsActions.productsActions.setProductsList(products))
-      }
-      get()
+      dispatch(productsActions.productsActions.setProductsList())
    }, []);
 
    return (
@@ -38,13 +35,20 @@ const Produtos = () => {
 
          <FlatList
             data={productsList}
-            renderItem={(item) => (
+            renderItem={({ item, index }) => (
                <ProductsList
-                  id={item.item.id}
-                  name={item.item.name}
-                  url={item.item.image_link}
+                  index={index}
+                  name={item.name}
+                  url={item.image_link}
                />
             )}
+            // renderItem={(item) => (
+            //    <ProductsList
+            //       id={item.item.id}
+            //       name={item.item.name}
+            //       url={item.item.image_link}
+            //    />
+            // )}
             numColumns={2}
             keyExtractor={(item, index) => String(index)}
          />

@@ -1,20 +1,15 @@
 import services from '../../services';
-import { PRODUCTS_LIST, } from '../types';
+import { PRODUCTS_LIST } from '../types';
 
-// const setProductsList = (name: string) => ({    
-//     type: PRODUCTS_LIST,
-//     name,
-// });
-const setProductsList = (name: string) => {
-    //     type: PRODUCTS_LIST,
-    // const name = await services.produtos.getProductos()
-    // console.log(name)
-    return ({
+const setProductsList = () => async dispatch => {
+    const response = await services.produtos.getProductos()
+
+    dispatch({
         type: PRODUCTS_LIST,
-        name,
+        name: response
     })
 }
 
 export default {
-    setProductsList,
-};
+    setProductsList
+}

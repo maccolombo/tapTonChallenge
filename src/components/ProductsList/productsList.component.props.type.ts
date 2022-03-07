@@ -1,6 +1,6 @@
 // import React from 'react';
 export type ProductsListComponentProps = {
-    id: number;
+    index: number;
     name: string;
     image_link: string;
 };
