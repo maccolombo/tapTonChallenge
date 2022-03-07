@@ -1,10 +1,27 @@
 
 import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { ProductsListComponentProps } from './productsList.component.props.type';
+import cartActions from '../../store/actions/cart';
+import * as rootNavigation from '../../routes/rootNavigation';
+// import productsAction from '../../store/actions/products'
 
 const ProductsListComponent: FC = (props: ProductsListComponentProps): JSX.Element => {
-    
+
+    const dispatch = useDispatch()
+    const handleAddButton = () => {
+        console.log("props: ", props.checked)
+        if (!props.checked) {
+            console.log("caiu aqui no if ")
+            dispatch(cartActions.setCartItem(props))
+        } else {
+            console.log("caiu aqui no else ")
+            dispatch(cartActions.removeCartItem(props))
+        }
+        rootNavigation.navigate("Cart")
+    }
+    // console.log("prop: ", props)
     return (
         <View style={styles.container}>
             <Text style={styles.desc}> {props.name}</Text>
@@ -14,15 +31,15 @@ const ProductsListComponent: FC = (props: ProductsListComponentProps): JSX.Eleme
                     height: 70,
                 }}
                 source={{
-                    uri: props.url  
+                    uri: props.url
                 }}
             />
 
             <TouchableOpacity
-                //   onPress={() => handleAddButton()}
+                onPress={() => handleAddButton()}
                 style={styles.addButton}
             >
-                <Text style={{ color: "#FFF" }}>Add</Text>
+                <Text style={{ color: "#FFF" }}>{props.checked ? "Remover" : "Add"}</Text>
             </TouchableOpacity>
 
         </View >

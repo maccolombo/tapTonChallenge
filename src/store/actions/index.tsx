@@ -1,4 +1,7 @@
 import productsActions from './products';
+import cartActions from './cart';
 
-
-export default { productsActions };
+export default {
+    productsActions,
+    cartActions
+};
