@@ -6,15 +6,16 @@ import services from '../../services';
 //import IconInput from '../../components/iconInput';
 import ProductsList from '../../components/ProductsList/index';
 //import { getProdutos } from '../../services/produtos';
+import productsActions from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Produtos = () => {
-
-
-   const [products, setProducts] = useState({});
+   const dispatch = useDispatch();
+   const { productsList } = useSelector((state: State) => state.products);
    useEffect(() => {
       async function get() {
          const products = await services.produtos.getProductos()
-         setProducts(products)
+         dispatch(productsActions.productsActions.setProductsList(products))
       }
       get()
    }, []);
@@ -34,15 +35,17 @@ const Produtos = () => {
             </TouchableOpacity>
             <Text style={styles.textHeader}> Produtos </Text>
          </View>
-         
+
          <FlatList
-            data={products}
+            data={productsList}
             renderItem={(item) => (
                <ProductsList
+                  id={item.item.id}
                   name={item.item.name}
                   url={item.item.image_link}
                />
             )}
+            numColumns={2}
             keyExtractor={(item, index) => String(index)}
          />
 

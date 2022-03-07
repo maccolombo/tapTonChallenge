@@ -4,36 +4,27 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ProductsListComponentProps } from './productsList.component.props.type';
 
 const ProductsListComponent: FC = (props: ProductsListComponentProps): JSX.Element => {
-    
+    // console.log(props)
     return (
         <View style={styles.container}>
+
             <Text style={styles.desc}> {props.name}</Text>
             <Image
                 style={{
-                    width: 50,
-                    height: 50,
+                    width: 70,
+                    height: 70,
                 }}
                 source={{
                     uri: props.url
                 }}
             />
-            {/* <View style={styles.secondRow}>
-                <Text style={styles.text}>{props.data.item.SALDO_ATUAL}</Text>
-                <Text style={styles.text}>{"Estoque:", props.data.item.COD_BARRA}</Text>
-                <Text style={styles.text}>{"R$ ", props.data.item.VLR_VISTA}</Text>
-            </View>
-
-            <View style={styles.secondRow}>
-                <Text>Cor: {props.data.item.COR}</Text>
-                <Text>Tamanho: {props.data.item.TAMANHO}</Text>
-            </View>
 
             <TouchableOpacity
-                onPress={() => handleAddButton()}
+                //   onPress={() => handleAddButton()}
                 style={styles.addButton}
             >
-                <Text style={{ color: Colors.light_text }}>Adicionar</Text>
-            </TouchableOpacity> */}
+                <Text style={{ color: "#FFF" }}>{props.id % 2 === 0 ? "Remover" : "Add"}</Text>
+            </TouchableOpacity>
         </View >
     );
 }
@@ -59,7 +50,7 @@ const styles = StyleSheet.create({
     addButton: {
         height: 40,
         width: "100%",
-        backgroundColor: "#FFF",
+        backgroundColor: "#ff6400",
         // backgroundColor: Colors.primary,
         borderRadius: 8,
         marginTop: 10,
