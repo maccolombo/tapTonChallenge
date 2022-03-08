@@ -10,11 +10,12 @@ import productsActions from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Produtos = () => {
+
    const dispatch = useDispatch();
    const { productsList } = useSelector((state: State) => state.products);
 
    useEffect(() => {
-      dispatch(productsActions.productsActions.setProductsList())
+      dispatch(productsActions.productsActions.getProductsList())
    }, []);
 
    return (
@@ -37,10 +38,10 @@ const Produtos = () => {
             data={productsList}
             renderItem={({ item, index }) => (
                <ProductsList
+                  id={item.id}
                   name={item.name}
                   url={item.image_link}
                   checked={item.checked}
-                  index={index}
                />
             )}
             numColumns={2}
