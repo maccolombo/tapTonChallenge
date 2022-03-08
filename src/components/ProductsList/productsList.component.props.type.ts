@@ -1,7 +1,7 @@
 // import React from 'react';
 export type ProductsListComponentProps = {
-    index: number;
+    id: number;
     name: string;
-    image_link: string;
+    url: string;
     checked: boolean;
 };
