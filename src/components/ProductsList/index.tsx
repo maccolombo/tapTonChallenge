@@ -1,17 +1,17 @@
 
-import React, { useState } from 'react';
-import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { ProductsListComponentProps } from './productsList.component.props.type';
 import productsActions from '../../store/actions/products';
 import * as rootNavigation from '../../routes/rootNavigation';
-const ProductsListComponent: FC = (props: ProductsListComponentProps): JSX.Element => {
-    
+
+const ProductsListComponent: React.FC<ProductsListComponentProps> = (props: ProductsListComponentProps) => {
+
     const dispatch = useDispatch()
     const handleAddButton = () => {
         const method = props.checked ? 'removeProductCart' : 'addProductCart'
         dispatch(productsActions[method](props))
-
         rootNavigation.navigate("Cart")
     }
 
@@ -30,7 +30,7 @@ const ProductsListComponent: FC = (props: ProductsListComponentProps): JSX.Eleme
 
             <TouchableOpacity
                 onPress={() => handleAddButton()}
-                style={styles.addButton}
+                style={[styles.addButton, { backgroundColor: props.checked ? "#ff6400" : "blue" }]}
             >
                 <Text style={{ color: "#FFF" }}>{props.checked ? "Remover" : "Add"}</Text>
             </TouchableOpacity>
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
         justifyContent: "space-between"
     },
     container: {
-        backgroundColor: "#FFF",// Colors.background_secondary,
-        marginTop: 10,
+        backgroundColor: "#FFF",
+        marginTop: 20,
         width: '100%',
         padding: 20,
         justifyContent: 'space-between',
@@ -60,8 +60,7 @@ const styles = StyleSheet.create({
     addButton: {
         height: 40,
         width: "100%",
-        backgroundColor: "#ff6400",
-        // backgroundColor: Colors.primary,
+
         borderRadius: 8,
         marginTop: 10,
         alignItems: 'center',

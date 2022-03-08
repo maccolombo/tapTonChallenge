@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import productsActions from '../../store/actions';
 import ProductsListComponent from '../../components/ProductsList';
+import { State } from '../../store/reducers';
 
 export default function Cart() {
     const navigation = useNavigation();
-    const dispatch = useDispatch()
-
-    // const productsList = useSelector((state: State) => state.products).productsList.filter(product => product.checked);
+    
     const { cart } = useSelector((state: State) => state.cart);
+
+    
     return (
         <View style={styles.headerContainer}>
             <TouchableOpacity
@@ -24,14 +25,11 @@ export default function Cart() {
                 /> */}
             </TouchableOpacity>
 
-
             <Text style={styles.title}>Carrinho</Text>
-
 
             <FlatList
                 data={cart}
                 renderItem={({ item }) => (
-
                     <ProductsListComponent
                         id={item.id}
                         name={item.name}
