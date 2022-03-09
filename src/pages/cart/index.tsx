@@ -1,28 +1,28 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import productsActions from '../../store/actions';
+import { useSelector } from 'react-redux';
+import GFonts from 'react-native-vector-icons/MaterialIcons';
 import ProductsListComponent from '../../components/ProductsList';
 import { State } from '../../store/reducers';
 
 export default function Cart() {
     const navigation = useNavigation();
-    
+
     const { cart } = useSelector((state: State) => state.cart);
 
-    
+
     return (
         <View style={styles.headerContainer}>
             <TouchableOpacity
                 style={styles.buttonBack}
                 onPress={() => navigation.goBack()}
             >
-                {/* <GFonts
+                <GFonts
                     name="keyboard-return"
                     size={30}
                     color="#FFF"
-                /> */}
+                />
             </TouchableOpacity>
 
             <Text style={styles.title}>Carrinho</Text>
@@ -31,6 +31,8 @@ export default function Cart() {
                 data={cart}
                 renderItem={({ item }) => (
                     <ProductsListComponent
+                        qtd={item.qtd}
+                        screen="cart"
                         id={item.id}
                         name={item.name}
                         url={item.url}

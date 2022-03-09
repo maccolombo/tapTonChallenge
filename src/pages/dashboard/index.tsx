@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-//import GFonts from 'react-native-vector-icons/MaterialIcons';
+import GFonts from 'react-native-vector-icons/MaterialIcons';
 //import Logo from '../../Assets/images/Logo.svg'
 
 export default function Dashboard() {
@@ -9,7 +9,7 @@ export default function Dashboard() {
 
     const buttons = [
         { name: "inventory", text: "Produtos", busca: 'Produtos' },
-        { name: "cart", text: "Carrinho", busca: 'Cart' },
+        { name: "shopping-cart", text: "Carrinho", busca: 'Cart' },
     ]
 
     return (
@@ -17,7 +17,7 @@ export default function Dashboard() {
             <View style={styles.imageLogo}>
                 {/* <Logo height={66} width={304} /> */}
             </View>
-            {buttons.map((item, i) => (
+            {buttons.map((item: any, i) => (
                 <TouchableOpacity
                     key={i}
                     onPress={() => navigation.navigate(item.busca)}
@@ -27,11 +27,11 @@ export default function Dashboard() {
                     >
                         <View
                             style={styles.squareHome}>
-                            {/* <GFonts
+                            <GFonts
                                 name={item.name}
                                 size={30}
-                                color="#FFF"
-                            /> */}
+                                color="#ff6400"
+                            />
                         </View>
                         <Text style={styles.textButtons}>{item.text}</Text>
                     </View>
