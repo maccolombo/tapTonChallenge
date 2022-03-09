@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, FlatList, Alert, ProgressBarAndroidBase } from 'react-native';
 import services from '../../services';
-//import GFontes from 'react-native-vector-icons/MaterialIcons';
+import GFontes from 'react-native-vector-icons/MaterialIcons';
 //import { useNavigation } from '@react-navigation/native';
 //import IconInput from '../../components/iconInput';
-import ProductsList from '../../components/ProductsList/index';
+import ProductsListComponent from '../../components/ProductsList/index';
 //import { getProdutos } from '../../services/produtos';
 import productsActions from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { State } from '../../store/reducers';
 
 const Produtos = () => {
 
@@ -25,11 +26,11 @@ const Produtos = () => {
                style={styles.buttonBack}
             //  onPress={() =>  console.log("carrin",cart)}   
             >
-               {/* <GFontes
+               <GFontes
                   name="keyboard-return"
                   size={30}
                   color="#FFF"
-               /> */}
+               />
             </TouchableOpacity>
             <Text style={styles.textHeader}> Produtos </Text>
          </View>
@@ -37,7 +38,8 @@ const Produtos = () => {
          <FlatList
             data={productsList}
             renderItem={({ item, index }) => (
-               <ProductsList
+               <ProductsListComponent
+                  screen="products"
                   id={item.id}
                   name={item.name}
                   url={item.image_link}
