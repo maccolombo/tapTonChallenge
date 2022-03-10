@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import GFonts from 'react-native-vector-icons/MaterialIcons';
@@ -14,7 +14,8 @@ export default function Cart() {
     useEffect(() => {
         cart.length === 0 && navigation.navigate("Dashboard")
     }, [cart]);
-    
+
+
     return (
         <View style={styles.headerContainer}>
             <TouchableOpacity
@@ -30,22 +31,25 @@ export default function Cart() {
 
             <Text style={styles.title}>Carrinho</Text>
 
-            <FlatList
-                data={cart}
-                renderItem={({ item }) => (
-                    <ProductsListComponent
-                        qtd={item.qtd}
-                        screen="cart"
-                        id={item.id}
-                        name={item.name}
-                        url={item.url}
-                        checked={item.checked}
-                    />
-                )}
-                numColumns={2}
-                keyExtractor={(item, index) => String(index)}
-            />
-
+            {cart.length === 0 ? (
+                <ActivityIndicator size={30} color={"blue"} />
+            ) : (
+                <FlatList
+                    data={cart}
+                    renderItem={({ item }) => (
+                        <ProductsListComponent
+                            qtd={item.qtd}
+                            screen="cart"
+                            id={item.id}
+                            name={item.name}
+                            url={item.url}
+                            checked={item.checked}
+                        />
+                    )}
+                    numColumns={2}
+                    keyExtractor={(item, index) => String(index)}
+                />
+            )}
 
         </View>
     );

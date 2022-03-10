@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, FlatList } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import * as rootNavigation from '../../routes/rootNavigation';
 import GFontes from 'react-native-vector-icons/MaterialIcons';
 import ProductsListComponent from '../../components/ProductsList/index';
@@ -17,6 +17,7 @@ const Products = () => {
       dispatch(productsActions.productsActions.getProductsList())
    }, []);
 
+
    return (
       <View style={styles.container}>
          <View style={styles.contentHeader}>
@@ -32,6 +33,7 @@ const Products = () => {
             </TouchableOpacity>
             <Text style={styles.textHeader}> Produtos </Text>
             <TouchableOpacity
+               disabled={cart.length === 0}
                style={[styles.buttonBack, { marginRight: 15 }]}
                onPress={() => rootNavigation.navigate("Cart")}
             >
@@ -66,22 +68,26 @@ const Products = () => {
                </View>
             </TouchableOpacity>
          </View>
+         {productsList.length === 0 ? (
+            <ActivityIndicator size={30} color={"blue"} />
+         ) : (
+            <FlatList
+               data={productsList}
+               renderItem={({ item }) => (
+                  <ProductsListComponent
+                     qtd={item.qtd}
+                     screen="products"
+                     id={item.id}
+                     name={item.name}
+                     url={item.image_link}
+                     checked={item.checked}
+                  />
+               )}
+               numColumns={2}
+               keyExtractor={(item, index) => String(index)}
+            />
+         )}
 
-         <FlatList
-            data={productsList}
-            renderItem={({ item }) => (
-               <ProductsListComponent
-                  qtd={item.qtd}
-                  screen="products"
-                  id={item.id}
-                  name={item.name}
-                  url={item.image_link}
-                  checked={item.checked}
-               />
-            )}
-            numColumns={2}
-            keyExtractor={(item, index) => String(index)}
-         />
 
       </View>
    );
