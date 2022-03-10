@@ -2,9 +2,6 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import GFonts from 'react-native-vector-icons/MaterialIcons';
-import { State } from '../../store/reducers';
-import { useSelector } from 'react-redux';
-//import Logo from '../../Assets/images/Logo.svg'
 
 export default function Dashboard() {
     const navigation = useNavigation();
