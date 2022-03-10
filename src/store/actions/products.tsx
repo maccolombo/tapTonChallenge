@@ -19,23 +19,13 @@ interface Ipayload {
 }
 
 const getProductsList = () => async (dispatch: ThunkDispatch<State, void, Action>) => {
-    const products = await services.produtos.getProductos();
+    const products = await services.produtos.getProductos();    
     dispatch({
         type: PRODUCTS_LIST,
-        name: products.map((item: Iproduct) => ({ ...item, checked: false }))
+        data: products.map((item: Iproduct) => ({ ...item, checked: false }))
     })
 }
-// const getProductsList: ActionCreator<ThunkAction<Promise<Action>, IState, void>> = () => {
-//     return async (dispatch: Dispatch<IState>): Promise<Action> => {
-//         const products = await services.produtos.getProductos();
-//         try {
-//             return dispatch({
-//                 type: PRODUCTS_LIST,
-//                 name: products.map((item: Iproduct) => ({ ...item, checked: false }))
-//             });
-//         } catch (e) { }
-//     };
-// };
+
 
 const addProductCart = (product: Iproduct) => async (dispatch, getState) => {
     const products = getState().products.productsList
@@ -49,7 +39,7 @@ const addProductCart = (product: Iproduct) => async (dispatch, getState) => {
 
     dispatch({
         type: PRODUCTS_LIST,
-        name: productsListUpdated
+        data: productsListUpdated
     })
 }
 
@@ -69,7 +59,7 @@ const removeProductCart = (product: Iproduct) => async (dispatch, getState) => {
 
     dispatch({
         type: PRODUCTS_LIST,
-        name: productsListUpdated
+        data: productsListUpdated
     })
 }
 

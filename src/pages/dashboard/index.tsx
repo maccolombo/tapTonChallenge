@@ -8,21 +8,17 @@ import { useSelector } from 'react-redux';
 
 export default function Dashboard() {
     const navigation = useNavigation();
-
     const { cart } = useSelector((state: State) => state.cart);
 
     const buttons = [
         { name: "inventory", text: "Produtos", busca: 'Produtos' },
-        { name: "shopping-cart", text: "Carrinho", busca: 'Cart' },
     ]
 
     return (
         <View style={styles.container}>
             <View style={styles.imageLogo}>
-                {/* <Logo height={66} width={304} /> */}
             </View>
-            {buttons.map((item: any, i) => (
-                // item.busca === "Cart" 
+            {button.map((item: any, i) => (
                 <TouchableOpacity
                     key={i}
                     onPress={() => navigation.navigate(item.busca)}
