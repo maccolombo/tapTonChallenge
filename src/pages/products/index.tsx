@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, FlatList } from 'react-native';
 import * as rootNavigation from '../../routes/rootNavigation';
@@ -8,6 +9,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../store/reducers';
 
 const Products = () => {
+
+import React, { useEffect, useState } from 'react';
+import { View, TouchableOpacity, Text, StyleSheet, FlatList, Alert, ProgressBarAndroidBase } from 'react-native';
+import services from '../../services';
+import GFontes from 'react-native-vector-icons/MaterialIcons';
+//import { useNavigation } from '@react-navigation/native';
+//import IconInput from '../../components/iconInput';
+import ProductsListComponent from '../../components/ProductsList/index';
+//import { getProdutos } from '../../services/produtos';
+import productsActions from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { State } from '../../store/reducers';
+
+const Produtos = () => {
 
    const dispatch = useDispatch();
    const { productsList } = useSelector((state: State) => state.products);
@@ -72,6 +87,8 @@ const Products = () => {
             renderItem={({ item }) => (
                <ProductsListComponent
                   qtd={item.qtd}
+            renderItem={({ item, index }) => (
+               <ProductsListComponent
                   screen="products"
                   id={item.id}
                   name={item.name}

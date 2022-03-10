@@ -26,6 +26,7 @@ const getProductsList = () => async (dispatch: ThunkDispatch<State, void, Action
     })
 }
 
+
 const addProductCart = (product: Iproduct) => async (dispatch, getState) => {
     const products = getState().products.productsList
     const previousDataCart = getState().cart.cart

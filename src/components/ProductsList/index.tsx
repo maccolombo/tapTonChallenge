@@ -28,7 +28,7 @@ const ProductsListComponent: React.FC<ProductsListComponentProps> = (props: Prod
 
     return (
         <View style={styles.container}>
-            <Text style={styles.desc}> {props.name}</Text>
+            <Text style={styles.desc}> {props.name} - {props.checked ? 'true' : 'false'}</Text>
             <Image
                 style={{
                     width: 70,
