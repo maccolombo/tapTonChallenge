@@ -1,5 +1,8 @@
 import services from '../../services';
 import { CART, PRODUCTS_LIST } from '../types';
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { State } from '../../store/reducers';
 
 interface Iproduct {
     qtd: number;
@@ -15,13 +18,24 @@ interface Ipayload {
     id: number;
 }
 
-const getProductsList = () => async (dispatch) => {
+const getProductsList = () => async (dispatch: ThunkDispatch<State, void, Action>) => {
     const products = await services.produtos.getProductos();
     dispatch({
         type: PRODUCTS_LIST,
         name: products.map((item: Iproduct) => ({ ...item, checked: false }))
     })
 }
+// const getProductsList: ActionCreator<ThunkAction<Promise<Action>, IState, void>> = () => {
+//     return async (dispatch: Dispatch<IState>): Promise<Action> => {
+//         const products = await services.produtos.getProductos();
+//         try {
+//             return dispatch({
+//                 type: PRODUCTS_LIST,
+//                 name: products.map((item: Iproduct) => ({ ...item, checked: false }))
+//             });
+//         } catch (e) { }
+//     };
+// };
 
 const addProductCart = (product: Iproduct) => async (dispatch, getState) => {
     const products = getState().products.productsList
