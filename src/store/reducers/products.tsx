@@ -6,7 +6,7 @@ const initialstate = {
 
 type Action = {
     type: string,
-    name?: string
+    data?: string
 }
 
 export default (state: any = initialstate, action: Action) => {
@@ -14,7 +14,7 @@ export default (state: any = initialstate, action: Action) => {
         case PRODUCTS_LIST:
             return {
                 ...state,
-                productsList: action.name,
+                productsList: action.data,
             }
 
         default:

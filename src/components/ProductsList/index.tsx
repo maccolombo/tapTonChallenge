@@ -4,7 +4,6 @@ import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'reac
 import { useDispatch } from 'react-redux';
 import { ProductsListComponentProps } from './productsList.component.props.type';
 import productsActions from '../../store/actions/products';
-import * as rootNavigation from '../../routes/rootNavigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const ProductsListComponent: React.FC<ProductsListComponentProps> = (props: ProductsListComponentProps) => {
@@ -14,7 +13,6 @@ const ProductsListComponent: React.FC<ProductsListComponentProps> = (props: Prod
     const handleAddRemoveButton = () => {
         const method = props.checked ? 'removeProductCart' : 'addProductCart'
         dispatch(productsActions[method](props))
-        rootNavigation.navigate("Cart")
     }
 
     const addQuantity = () => {
@@ -30,7 +28,7 @@ const ProductsListComponent: React.FC<ProductsListComponentProps> = (props: Prod
 
     return (
         <View style={styles.container}>
-            <Text style={styles.desc}> {props.name} - {props.checked ? 'true' : 'false'}</Text>
+            <Text style={styles.desc}> {props.name}</Text>
             <Image
                 style={{
                     width: 70,
@@ -68,8 +66,6 @@ const ProductsListComponent: React.FC<ProductsListComponentProps> = (props: Prod
                         <TextInput
                             style={styles.input}
                             placeholder={String(props.qtd)}
-                            // onChangeText={(text) => setQtd(parseFloat(text))}
-                            //onBlur={() => onBlur()}
                             placeholderTextColor="#000"
                         />
                         <TouchableOpacity
