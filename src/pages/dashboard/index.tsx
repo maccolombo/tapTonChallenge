@@ -2,10 +2,14 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import GFonts from 'react-native-vector-icons/MaterialIcons';
+import { State } from '../../store/reducers';
+import { useSelector } from 'react-redux';
 //import Logo from '../../Assets/images/Logo.svg'
 
 export default function Dashboard() {
     const navigation = useNavigation();
+
+    const { cart } = useSelector((state: State) => state.cart);
 
     const buttons = [
         { name: "inventory", text: "Produtos", busca: 'Produtos' },
@@ -18,13 +22,12 @@ export default function Dashboard() {
                 {/* <Logo height={66} width={304} /> */}
             </View>
             {buttons.map((item: any, i) => (
+                // item.busca === "Cart" 
                 <TouchableOpacity
                     key={i}
                     onPress={() => navigation.navigate(item.busca)}
                 >
-                    <View
-                        style={{ flexDirection: 'row', alignItems: 'center' }}
-                    >
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <View
                             style={styles.squareHome}>
                             <GFonts

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
@@ -11,7 +11,10 @@ export default function Cart() {
 
     const { cart } = useSelector((state: State) => state.cart);
 
-
+    useEffect(() => {
+        cart.length === 0 && navigation.navigate("Dashboard")
+    }, [cart]);
+    
     return (
         <View style={styles.headerContainer}>
             <TouchableOpacity

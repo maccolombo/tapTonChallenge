@@ -35,6 +35,7 @@ const ProductsListComponent: React.FC<ProductsListComponentProps> = (props: Prod
                 style={{
                     width: 70,
                     height: 70,
+                    alignSelf: 'center'
                 }}
                 source={{
                     uri: props.url
@@ -100,7 +101,8 @@ const ProductsListComponent: React.FC<ProductsListComponentProps> = (props: Prod
 const styles = StyleSheet.create({
     desc: {
         color: "#000",
-        fontWeight: '900'
+        fontWeight: '900',
+        textAlign: 'center'
     },
     text: {
     },
